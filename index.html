@@ -47,11 +47,6 @@ eventbrite:           # optional: alphanumeric key for Eventbrite registration, 
 </iframe>
 {% endif %}
 
-<h4>This is the workshop template.  Use it to create your own website.
-Delete these lines and please fill in 
-<a href="{{site.amy_site}}/submit">this self-organized workshop form</a>
-and the administrator will contact you if we need any extra information.</h4>
-
 <h2 id="general">General Information</h2>
 
 <!--
@@ -195,23 +190,26 @@ and the administrator will contact you if we need any extra information.</h4>
   <div class="col-md-6">
     <h3>Day 1</h3>
     <table class="table table-striped">
-      <tr> <td>09:00</td>  <td>Automating tasks with the Unix shell</td> </tr>
-      <tr> <td>10:30</td> <td>Coffee</td> </tr>
-      <tr> <td>12:00</td>  <td>Lunch break</td> </tr>
-      <tr> <td>13:00</td>  <td>Building programs with Python</td> </tr>
-      <tr> <td>14:30</td>  <td>Coffee</td> </tr>
-      <tr> <td>16:00</td>  <td>Wrap-up</td> </tr>
+      <tr> <td>09:00-9:30</td>  <td>Setup and Introductions</td> </tr>
+      <tr> <td>09:30-10:45</td>  <td><a href="lessons/shell/">Introducing the Shell</a></td> </tr>
+      <tr> <td>10:45-11</td> <td>Break</td> </tr>
+      <tr> <td>11:00-12:30</td> <td><a href="lessons/python/">Scientific Programming I</a></td> </tr>
+      <tr> <td>12:30-1:30</td>  <td>Lunch break</td> </tr>
+      <tr> <td>1:30-3:00</td>  <td><a href="lessons/python/">Scientific Programming I and II</a></td> </tr>
+      <tr> <td>3:00-3:15</td>  <td>Break</td> </tr>
+<tr> <td>3:15-5:00</td> <td><a href="lessons/python/">Scientific Programming II and Wrap Up</a></td> </tr>
     </table>
   </div>
   <div class="col-md-6">
     <h3>Day 2</h3>
     <table class="table table-striped">
-      <tr> <td>09:00</td>  <td>Version control with Git</td> </tr>
-      <tr> <td>10:30</td>  <td>Coffee</td> </tr>
-      <tr> <td>12:00</td>  <td>Lunch break</td> </tr>
-      <tr> <td>13:00</td>  <td>Managing data with SQL</td> </tr>
-      <tr> <td>14:30</td>  <td>Coffee</td> </tr>
-      <tr> <td>16:00</td>  <td>Wrap-up</td> </tr>
+      <tr> <td>09:00-10:30</td>  <td><a href="lessons/git/">Version control I</a></td> </tr>
+      <tr> <td>10:30-10:45</td>  <td>Break</td> </tr>
+      <tr> <td>10:45-12:30</td>  <td><a href="lessons/git/">Version control II</a></td> </tr>
+      <tr> <td>12:30-1:30</td>  <td>Lunch</td> </tr>
+      <tr> <td>1:30-3:00</td>  <td><a href="lessons/python/testing.html">Modules and Testing</a></td> </tr>
+      <tr> <td>3:00-3:15</td>  <td>Break</td> </tr>
+<tr> <td>3:15-5:00</td> <td><a href="lessons/python/reproducible_workflow.html">Reproducible Workflows</a></td> </tr>
     </table>
   </div>
 </div>
@@ -257,7 +255,7 @@ and the administrator will contact you if we need any extra information.</h4>
   please preview your site before committing, and make sure to run
   'tools/check' as well.
 -->
-<h2 id="syllabus">Syllabus</h2>
+<!-- <h2 id="syllabus">Syllabus</h2>
 
 <div class="row">
   <div class="col-md-6">
@@ -284,7 +282,7 @@ and the administrator will contact you if we need any extra information.</h4>
       <li>Using Python from the command line</li>
       <li><a href="{{site.swc_pages}}/python-novice-inflammation/reference/">Reference...</a></li>
     </ul>
-  </div>
+  </div> -->
   <!--
   <div class="col-md-6">
     <h3 id="syllabus-r">Programming in R</h3>
@@ -311,7 +309,7 @@ and the administrator will contact you if we need any extra information.</h4>
      </ul>
    </div>
    -->
-</div>
+<!-- </div>
 
 <div class="row">
   <div class="col-md-6">
@@ -344,7 +342,7 @@ and the administrator will contact you if we need any extra information.</h4>
   </div>
 </div>
 
-<hr/>
+<hr/> -->
 
 <!--
   SETUP
@@ -621,7 +619,7 @@ and the administrator will contact you if we need any extra information.</h4>
         <li>Install Python 3 using all of the defaults for installation <em>except</em> make sure to check <strong>Make Anaconda the default Python</strong>.</li>
       </ol>
     </div>
-    <div class="col-md-4">
+<!--     <div class="col-md-4">
       <h4 id="python-macosx">Mac OS X</h4>
       <a href="https://www.youtube.com/watch?v=TcSAln46u9U">Video Tutorial</a>
       <ol>
@@ -657,8 +655,8 @@ and the administrator will contact you if we need any extra information.</h4>
           (this makes the Anaconda distribution the default Python).
         </li>
       </ol>
-    </div>
-  </div>
+    </div> -->
+<!--   </div> -->
 <!--
   <p>
   Once you are done installing the software listed above,
@@ -720,7 +718,7 @@ and the administrator will contact you if we need any extra information.</h4>
 </div> <!-- End of 'R' section. -->
 
 <div id="sql"> <!-- Start of 'SQLite' section. -->
-  <h3>SQLite</h3>
+<!--   <h3>SQLite</h3>
 
   <p>
     SQL is a specialized programming language used with databases.  We
@@ -753,7 +751,7 @@ and the administrator will contact you if we need any extra information.</h4>
 
   <p><strong>If you installed Anaconda, it also has a copy of SQLite
     <a href="https://github.com/ContinuumIO/anaconda-issues/issues/307">without support to <code>readline</code></a>.
-    Instructors will provide a workaround for it if needed.</strong></p>
+    Instructors will provide a workaround for it if needed.</strong></p> -->
 </div> <!-- End of 'SQLite' section. -->
 
 <!--
