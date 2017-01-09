@@ -133,7 +133,7 @@ The data files are located in the directory `data` inside the working
 directory. Now we can load the data into R using `read.csv`:
 
 ```{r, results="hide"}
-read.csv(file = "~/Dropbox/2017-01-12-ucb/data/data-files/r-lesson/data/inflammation-01.csv", header = FALSE)
+read.csv(file = "data/inflammation-01.csv", header = FALSE)
 ```
 
 The expression `read.csv(...)` is a
@@ -255,7 +255,7 @@ Now that we know how to assign things to variables, let's re-run
 `read.csv` and save its result:
 
 ```{r}
-dat <- read.csv(file = "~/Dropbox/2017-01-12-ucb/data/data-files/r-lesson/data/inflammation-01.csv", header = FALSE)
+dat <- read.csv(file = "data/inflammation-01.csv", header = FALSE)
 ```
 
 This statement doesn't produce any output because assignment doesn't

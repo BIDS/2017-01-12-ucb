@@ -199,7 +199,7 @@ $(document).ready(function () {
 <pre class="r"><code>setwd(&quot;~/Desktop/software-carpentry-2016/data-files/r-lesson/&quot;)</code></pre>
 <p>Just like in the Unix Shell, we type the command and then press <code>Enter</code> (or <code>return</code>). Alternatively you can change the working directory using the RStudio GUI using the menu option <code>Session</code> -&gt; <code>Set Working Directory</code> -&gt; <code>Choose Directory...</code></p>
 <p>The data files are located in the directory <code>data</code> inside the working directory. Now we can load the data into R using <code>read.csv</code>:</p>
-<pre class="r"><code>read.csv(file = &quot;~/Dropbox/2017-01-12-ucb/data/data-files/r-lesson/data/inflammation-01.csv&quot;, header = FALSE)</code></pre>
+<pre class="r"><code>read.csv(file = &quot;data/inflammation-01.csv&quot;, header = FALSE)</code></pre>
 <p>The expression <code>read.csv(...)</code> is a <a href="reference.html#function-call">function call</a> that asks R to run the function <code>read.csv</code>.</p>
 <p><code>read.csv</code> has two <a href="reference.html#argument">arguments</a>: the name of the file we want to read, and whether the first line of the file contains names for the columns of data. The filename needs to be a character string (or <a href="reference.html#string">string</a> for short), so we put it in quotes. Assigning the second argument, <code>header</code>, to be <code>FALSE</code> indicates that the data file does not have column headers. We’ll talk more about the value <code>FALSE</code>, and its converse <code>TRUE</code>, in lesson 04.</p>
 <blockquote>
@@ -255,7 +255,7 @@ Variable" /></p>
 <p>An alternative way to print the value of a variable is to use () around the assignment statement. As an example: <code>(total_weight &lt;- weight_kg + weight_lb)</code>, adds the values of <code>weight_kg</code> and <code>weight_lb</code>, assigns the result to the <code>total_weight</code>, and finally prints the assigned value of the variable <code>total_weight</code>.</p>
 </blockquote>
 <p>Now that we know how to assign things to variables, let’s re-run <code>read.csv</code> and save its result:</p>
-<pre class="r"><code>dat &lt;- read.csv(file = &quot;~/Dropbox/2017-01-12-ucb/data/data-files/r-lesson/data/inflammation-01.csv&quot;, header = FALSE)</code></pre>
+<pre class="r"><code>dat &lt;- read.csv(file = &quot;data/inflammation-01.csv&quot;, header = FALSE)</code></pre>
 <p>This statement doesn’t produce any output because assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value. However, for large data sets it is convenient to use the function <code>head</code> to display only the first few rows of data.</p>
 <pre class="r"><code>head(dat)</code></pre>
 <pre><code>##   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20

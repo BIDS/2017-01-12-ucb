@@ -3,12 +3,9 @@ layout: page
 title: Programming with R
 subtitle: Creating functions
 minutes: 30
+output: md_document
 ---
 
-```{r, include = FALSE}
-source("tools/chunk-options.R")
-opts_chunk$set(fig.path = "fig/02-func-R-")
-```
 
 > ## Learning Objectives {.objectives}
 >
@@ -125,9 +122,13 @@ it won't be able to understand what's going on.
 >    return(answer)
 > }
 > best_practice <- c("Write", "programs", "for", "people", "not",
-> "computers") asterisk <- "***" # R interprets a variable with a
-> single value as a vector # with one element.  fence(best_practice,
-> asterisk) ```
+> "computers") 
+> asterisk <- "***" 
+
+> # R interprets a variable with a
+> # single value as a vector  with one element.  fence(best_practice,
+> # asterisk) 
+> ```
 >  + If the variable `v` refers to a vector, then `v[1]` is the
 >    vector's first element and `v[length(v)]` is its last (the
 >    function `length` returns the number of elements in a vector).
