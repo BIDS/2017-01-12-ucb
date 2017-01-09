@@ -39,12 +39,13 @@ those variables so that we can use them inside the function. Inside the
 function, we use a [return statement](reference.html#return-statement)
 to send a result back to whoever asked for it.
 
-> Tip {.callout} In R, it is not necessary to include the return
-> --------------------------------------------------------------
+> Tip
+> ---
 >
-> statement. R automatically returns whichever variable is on the last
-> line of the body of the function. Since we are just learning, we will
-> explicitly define the return statement.
+> In R, it is not necessary to include the return statement. R
+> automatically returns whichever variable is on the last line of the
+> body of the function. Since we are just learning, we will explicitly
+> define the return statement.
 
 Let's try running our function. Calling our own function is no different
 from calling any other function:

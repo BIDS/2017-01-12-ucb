@@ -1,4 +1,4 @@
-s---
+---
 layout: page
 title: Programming with R
 subtitle: Creating functions
@@ -49,7 +49,8 @@ the function, we use a
 [return statement](reference.html#return-statement) to send a result
 back to whoever asked for it.
 
-> ## Tip {.callout} In R, it is not necessary to include the return
+> ## Tip {.callout}
+>In R, it is not necessary to include the return
 >statement.  R automatically returns whichever variable is on the last
 >line of the body of the function. Since we are just learning, we will
 >explicitly define the return statement.
