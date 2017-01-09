@@ -5,10 +5,6 @@ subtitle: Making choices
 minutes: 30
 ---
 
-```{r, include = FALSE}
-source("tools/chunk-options.R")
-opts_chunk$set(fig.path = "fig/04-cond-")
-```
 
 > ## Learning Objectives {.objectives}
 >

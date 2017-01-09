@@ -5,11 +5,6 @@ subtitle: Analyzing multiple data sets
 minutes: 30
 ---
 
-```{r, include = FALSE}
-source("tools/chunk-options.R")
-opts_chunk$set(fig.path = "fig/03-loops-R-")
-```
-
 > ## Learning Objectives {.objectives}
 >
 > * Explain what a `for` loop does.
