@@ -191,7 +191,8 @@ We can do arithmetic with the variable:
 2.2 * weight_kg
 ```
 
-> ## Tip {.callout} We can add comments to our code using the `#`
+> ## Tip {.callout}
+> We can add comments to our code using the `#`
 >character. It is useful to document our code in this way so that
 >others (and us the next time we read it) have an easier time
 >following what the code is doing.
