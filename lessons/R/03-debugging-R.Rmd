@@ -1,14 +1,11 @@
 ---
 layout: page
 title: Programming with R
-subtitle: Creating functions
+subtitle: Debugging
 minutes: 30
+output: md_document
 ---
 
-```{r, include = FALSE}
-source("tools/chunk-options.R")
-opts_chunk$set(fig.path = "fig/02-func-R-")
-```
 
 > ## Learning Objectives {.objectives}
 >
@@ -236,53 +233,52 @@ Of course you can manually change the code in a function without using
 pain to remember exactly what you changed) and hard to do this with
 functions in packages, so *trace* is a nice way to do things.
 
-> ## Challenge - Debugging {.challenge}
-> ```{r}
->
->hb <- read.csv('../../data/beeOperations.csv')
->hb <- hb[order(hb$year),]
->
->plotVar <- function(hb, var, ylabs,
->                    types=c("hobby", "semicom", "com"),
->                    div=10^3){
->    ## function to plot honey bee data by region
->    ## takes hb, a data.frame with the varaibles to be plotted
->    ## var, the name of the column of interest
->    ## types, the different types of honey bee keepers
->    ## div, a scalar to divide the values on the yaxis by to avoid
->    ## ugly numbers
->    layout(matrix(1:(length(unique(hb$region))+1), ncol=2))
->    par(oma=c(3,3,2,1), mar=c(2,2,3,1), mgp=c(2,1,0),
->        cex.axis=1.5)
->    ntypes <- length(types)
->    for(i in unique(hb$region)){
->        this.region <- hb[hb$region == i,]
->        plot(x=this.region$year[this.region$type == types[1]],
->             y=this.region[,var][this.region$type == types[1]],
->             type="l",
->             ylim=c(0, max(hb[,var], na.rm=TRUE)),
->             xlab="Year",
->             ylab=ylabs,
->             yaxt="n",
->             main=i)
->        ltys <- c("dashed", "dotted")
->        for(j in 2:length(types)){
->        points(x=this.region$year[this.region$type == types[j]],
->               y=this.region[,var][this.region$type == types[j]],
->               type="l", lty=ltys[j])
->        }
->        if(i %in% unique(hb$region)[1:4]){
->            axis(2, pretty(c(0, max(hb[,var], na.rm=TRUE))),
->                 labels=pretty(c(0, max(hb[,var], na.rm=TRUE)))/div)
->        }
->    }
->}
->
->
->plotVar(hb, "hives", "Hives")
->plotVar(hb, "apiaries", "Apiaries")
->plotVar(hb, "beekeepers", "Beekeepers")
->plotVar(hb, "hives_beekeeper", "Hives per beekeeper")
->plotVar(hb, "apiary_beekeeper", "Apiaries per beekeeper", div=1)
->
-> ```
+## Challenge - Debugging {.challenge}
+ ```{r, eval=FALSE}
+ hb <- read.csv('data/beeOperations.csv')
+ hb <- hb[order(hb$year),]
+
+ plotVar <- function(hb, var, ylabs,
+                    types=c("hobby", "semicom", "com"),
+                    div=10^3){
+    ## function to plot honey bee data by region
+    ## takes hb, a data.frame with the varaibles to be plotted
+    ## var, the name of the column of interest
+    ## types, the different types of honey bee keepers
+    ## div, a scalar to divide the values on the yaxis by to avoid
+    ## ugly numbers
+    layout(matrix(1:(length(unique(hb$region))+1), ncol=2))
+    par(oma=c(3,3,2,1), mar=c(2,2,3,1), mgp=c(2,1,0),
+        cex.axis=1.5)
+    ntypes <- length(types)
+    for(i in unique(hb$region)){
+       this.region <- hb[hb$region == i,]
+        plot(x=this.region$year[this.region$type == types[1]],
+             y=this.region[,var][this.region$type == types[1]],
+             type="l",
+             ylim=c(0, max(hb[,var], na.rm=TRUE)),
+             xlab="Year",
+             ylab=ylabs,
+             yaxt="n",
+             main=i)
+        ltys <- c("dashed", "dotted")
+        for(j in 2:length(types)){
+        points(x=this.region$year[this.region$type == types[j]],
+               y=this.region[,var][this.region$type == types[j]],
+               type="l", lty=ltys[j])
+        }
+        if(i %in% unique(hb$region)[1:4]){
+            axis(2, pretty(c(0, max(hb[,var], na.rm=TRUE))),
+                 labels=pretty(c(0, max(hb[,var], na.rm=TRUE)))/div)
+        }
+    }
+}
+
+
+plotVar(hb, "hives", "Hives")
+plotVar(hb, "apiaries", "Apiaries")
+plotVar(hb, "beekeepers", "Beekeepers")
+plotVar(hb, "hives_beekeeper", "Hives per beekeeper")
+plotVar(hb, "apiary_beekeeper", "Apiaries per beekeeper", div=1)
+
+ ```
