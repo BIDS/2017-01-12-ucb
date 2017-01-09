@@ -139,36 +139,38 @@ $(document).ready(function () {
 <p>One final note — the workflow that we’re following here is just a suggestion. Organizing code and data is an art, and a room of 100 scientists will give you 101 opinions about how to do it best. Consider the below a useful place to get started, and once you’ve become comfortable with this basic outline, don’t hesitate to tinker and customize.</p>
 <div id="setting-up-the-project-directory" class="section level2">
 <h2>1. Setting up the project directory</h2>
-<p>As we’ve done throughout this workshop, let’s create a project (a reasonably self-contained set of code, data, and results to answer a discrete scientific question) that will analyze the number of birds counted during a field survey. We begin by creating a directory called <code>bird_project</code> in a convenient place on our hard drive (if you’ve completed the <a href="%7B%7Bpage.root%7D%7D/lessons/git/">version control lesson</a>, note that we’re starting a new project directory here, which will be organized and managed more comprehensively than the example in that lesson).</p>
-<p>Now, within the <code>bird_project</code> directory, create four subdirectories (for bonus points, do this from the command line):</p>
+<p>As we’ve done throughout this workshop, let’s create a project (a reasonably self-contained set of code, data, and results to answer a discrete scientific question) that will analyze the number of birds counted during a field survey. We begin by creating a directory called <code>raptor_inflam</code> in a convenient place on our hard drive (if you’ve completed the <a href="%7B%7Bpage.root%7D%7D/lessons/git/">version control lesson</a>, note that we’re starting a new project directory here, which will be organized and managed more comprehensively than the example in that lesson).</p>
+<p>Now, within the <code>raptor_inflam</code> directory, create four subdirectories (for bonus points, do this from the command line):</p>
 <pre><code>.
 |-- data
 |-- man
 |-- results
 |-- src</code></pre>
-<p>The <code>data</code> directory will hold all of the raw data associated with the project, which in this case will be just a single large csv file containing data on the bird counts.</p>
+<p>The <code>data</code> directory will hold all of the raw data associated with the project, which in this case will be just a single large csv file containing data on the inflammation data.</p>
 <p>The <code>man</code> folder, short for manuscript, will (someday) contain the manuscript that we’ll write describing the results of our analysis. You can consider this directory optional, as there are good arguments both for and against the practical value of putting your manuscripts under version control. I’d suggest at least trying it once to see if you feel that it makes your life easier. Note that if you write your manuscripts in a plain text format like LaTeX or Markdown (perhaps in concert with <a href="http://pandoc.org">pandoc</a>), you will be able to use version control to diff and merge your manuscript drafts, which can be useful.</p>
 <p>Finally, the <code>results</code> folder will contain the results of our analysis, including both tables and figures, and the <code>src</code> directory will contain all of our code used to perform the analysis.</p>
 <p>In a more complex project, each of these directories may have additional subdirectories to help keep things organized.</p>
 </div>
 <div id="initialize-a-git-repository" class="section level2">
 <h2>2. Initialize a Git repository</h2>
-<p>Since we want to use version control to track the development of our project, we’ll start off right away by initializing an empty Git repository within this directory. To do this, open a terminal window, navigate to the main <code>bird_project</code> directory, and run the command <code>git init</code>.</p>
+<p>Since we want to use version control to track the development of our project, we’ll start off right away by initializing an empty Git repository within this directory. To do this, open a terminal window, navigate to the main <code>raptor_inflam</code> directory, and run the command <code>git init</code>.</p>
 <p>As you add things to the project directory, and modify old things, you’ll want to frequently commit your changes, as we discussed in the Git tutorial.</p>
 </div>
 <div id="add-raw-data" class="section level2">
 <h2>3. Add raw data</h2>
-<p>Often, we start a project with a particular data file, or set of data files. In this case, we have the file <code>birds_lg.csv</code>, which contains the records that we want to analyze. If you don’t have it already, download this file <a href="birds_lg.csv">here</a> and place it in the <code>data</code> subdirectory.</p>
+<p>Often, we start a project with a particular data file, or set of data files. In this case, we have the file <code>inflammation-01.csv</code>, which contains the records that we want to analyze. If you don’t have it already, download this file <a href="data/inflammation-01.csv">here</a> and place it in the <code>data</code> subdirectory.</p>
 <p>Now we reach an interesting question — should the files in your <code>data</code> directory be placed under version control (i.e., should you <code>git add</code> and <code>git commit</code> these files)? Although you might automatically think that this is necessary, in principle our raw data should never change — that is, there’s only one version (the original version!), and it will never be updated (any modified versions of our data are considered a “result”). As a result, it’s not necessarily useful to place this file under version control for the purpose of tracking changes to it.</p>
 <p>A reasonable rule of thumb for getting started is that if the file is realatively small (ours is &lt; 100k), go ahead and commit it to the tit repository, as you won’t be wasting much hard disk space. Additionally, the file will then travel with your code, so if you push your repository to GitHub (for example) and one of your collaborators clones a copy, they’ll have everything they need to generate your results.</p>
 <p>However, if your file is realatively large AND is backed up elsewhere, you might want to avoid making a duplicate copy in the <code>.git</code> directory.</p>
 <p>In either case, you’ll want to ensure that every one of your data files has some sort of metadata associated with it to describe where it came from, how it got to you, the meaning of the columns, etc. There are many formats for metadata that vary from simple to very complex. Ecologists, for example, have a standard known as <a href="http://knb.ecoinformatics.org/software/eml/">Ecological Metadata Language</a> standards and a tool <a href="http://knb.ecoinformatics.org/morphoportal.jsp">Morpho</a> for creating metadata files. For your own private work, make sure that, at a minimum, you create a <code>README.txt</code> file that describes your data as best you can.</p>
 <p>Copy and paste the text below into a <code>README.txt</code> file and place it in the data subdirectory. Remember that this is a bare-bones description — in your own work, you’ll want to include as much information as you have.</p>
-<pre><code>Data downloaded from North American Breeding Bird Survey web interface at http://www.pwrc.usgs.gov/BBS/RawData/ on December 5, 2015. Table contains summary species counts for California.</code></pre>
+<pre><code>Data downloaded from North American Breeding Bird Survey web
+interface at http://www.pwrc.usgs.gov/BBS/RawData/ on December
+9, 2017. Table contains summary species counts for California.</code></pre>
 <p>At this point, your project directory should look like this:</p>
 <pre><code>.
 |-- data
-|   |-- birds_lg.csv
+|   |-- inflammation-01.csv
 |   |-- README.txt
 |-- man
 |-- results
@@ -179,64 +181,31 @@ $(document).ready(function () {
 <div id="write-code-to-perform-analysis" class="section level2">
 <h2>4. Write code to perform analysis</h2>
 <p>Now for the real work — writing the code that will perform our analysis. As before, we’ll separate the “scientific” part of our code, which does the conceptual heavy lifting of our analysis, from the more specific parts of the code that handle the logistics of running this particular, individual analysis.</p>
-<p>In our case, the scientific “guts” of our code are found in the <code>analysis_functions.py</code> module AND, just as importantly, in the test file that we wrote to verify that the function in our module is working properly. So at this point, we can just copy the <code>analysis_functions.py</code> and <code>test_analysis_functions.py</code> into our <code>src</code> directory. If you don’t have these handy, or if you didn’t finish these exercises in the previous lesson, you can download a complete working copy of the module <a href="analysis_functions-master.py">here</a> and the test file <a href="test_analysis_functions-master.py">here</a>. Note that these files have “-master” in their file names, to distinguish them from the ones that you may have created in previous lessons — if you’re going to use these downloaded versions going forward, you can remove the “-master” part from the file names.</p>
-<p>Now we reach a small question, which is what to do with the <code>birds_sm.csv</code> data table (you can get it <a href="birds_sm.csv">here</a> if you don’t have it handy). This is technically data, but it is also only used for our module testing, not for our final analysis. While it might seem that this should live in the <code>data</code> directory, what if (as is often the case) the data in <code>birds_sm.csv</code> was actually fake data that was set up in a particular way to test our module? There’s thus some argument to put it in the <code>src</code> directory along with the test file. I’ve seen reasonable people take both approaches — here we’ll also copy <code>birds_sm.csv</code> into our <code>src</code> directory to keep things easy, although feel free to move it to the data directory (note that if you move it, you’ll have to modify the path to this data file that you previously put in your test file).</p>
+<p>In our case, the scientific “guts” of our code are found in the <code>01-starting-with-data.Rmd</code> module AND, just as importantly, in the test file that we wrote to verify that the function in our module is working properly. So at this point, we can just copy the <code>01-starting-with-data.Rmd</code> and <code>02-func-R.Rmd</code> into our <code>src</code> directory. If you don’t have these handy, or if you didn’t finish these exercises in the previous lesson, you can download a complete working copy of the module <a href="01-starting-with-data.Rmd">here</a> and the test file <a href="02-func-R.Rmd">here</a>. Note that these files have “-master” in their file names, to distinguish them from the ones that you may have created in previous lessons — if you’re going to use these downloaded versions going forward, you can remove the “-master” part from the file names.</p>
 <p>At this point, your project directory should look like this:</p>
 <pre><code>.
 |-- data
-|   |-- birds_lg.csv
+|   |-- inflammation-01.csv
 |   |-- README.txt
 |-- man
 |-- results
 |-- src
-|   |-- birds_sm.csv
-|   |-- analysis_functions.py
-|   |-- test_analysis_functions.py</code></pre>
-<p>Make sure that you commit these three new files (your module, test file, and test data set) to your git repository. You can commit these together, or separately if you think it would be useful to add a different commit message for the different files. At this stage, you might want to run <code>nosetests</code> again in the <code>src</code> directory to make sure everything is working.</p>
+|   |-- 01-starting-with-data.Rmd
+|   |-- 02-func-R.Rmd</code></pre>
+<p>Make sure that you commit these three new files (your module, test file, and test data set) to your git repository. You can commit these together, or separately if you think it would be useful to add a different commit message for the different files.</p>
 <p>Now, of course, that copying and pasting in a completed module is not the normal workflow for this step. Normally, you’d spend days/weeks/months working in the <code>src</code> directory, writing code and tests, generating intermediate results, looking at the results, writing new code and tests, generating new results, etc. This iterative cycle isn’t unlike writing a paper — you spew out a draft that’s not so bad (but also not so good), then go back and revise it, then spew out some new material, revise that, etc.</p>
 <p>At this point, it’s worth taking a moment to discuss how you might approach this iterative software development cycle. Below are two possible suggestions, although the “stack” that one chooses to use is very much a personal preference.</p>
-<p>One strategy is to simultaneously work on three files at once — a module like <code>analysis_functions.py</code>, a file to test the functions in your module like <code>test_analysis_functions.py</code>, and a third script that calls various functions from your module and runs them so that you can see whether your code is doing what you want it to do. I sometimes call this <code>scratch.py</code> or something like that, and fill up my terminal window with hundreds of lines of <code>python scratch.py</code> as I modify my code and look at the results that are saved, results that are printed to the terminal window, and errors that pop up.</p>
-<p>Conversely, you could replace the scratch file with a cell in a Jupyter notebook that serves the same function. if you do this, you should put the line <code>reload(my_module)</code> under the line <code>import my_module</code> in the cell to make sure that any changes you make in the module are re-imported into your notebook when you run a cell.</p>
-<p>Another strategy is to take advantage of the Jupyter notebook more fully, and , write your code in individual cells, executing each one sequentially, making sure each cell executes properly, and review the values of variables after each step. This can be great and efficient in the event that you really don’t have any idea what your final code will look like. The downside here is that, at the end, you’ll be left with one enormous notebook file (probably without unit tests), and you’ll need to go back at the end to properly modularize your code into functions and separate files, similar to the structure that we’re using in this exercise, so that you can have a fully reproducible workflow. Plus you may end up writing your unit tests at the end rather than iteratively with your code as you go. All that said, though, this is particularly useful strategy if you think you need to feel your way around for a while. Note that the new Jupyter notebooks work with many programming languages, including R, and you can thus use this same process for code development in other languages.</p>
 </div>
 <div id="the-runall-script" class="section level2">
 <h2>5. The runall script</h2>
-<p>Now that we have our core functions and tests in place, it’s time to implement the “button” for our push-button workflow — the <code>runall.py</code> script. Once again, we’ve already created this file in a previous lesson (download it <a href="runall-master.py">here</a> if you don’t have your own copy handy, and remove the “-master” part from the file name), so you can just copy this file into your <code>src</code> directory.</p>
-<p>As a reminder, the idea of the <code>runall</code> script is to collect all of the “wrapper” code that’s needed to run this particular analysis into a single file. When you execute this file with the command <code>python runall.py</code>, it will fill in your previously empty results directory with the output of our analysis (in this case, a table and a plot).</p>
-<p>To make our <code>runall</code> script look for data in the <code>data</code> directory and save our output in the <code>results</code> directory, rather than in the same directory as the script, modify these three lines</p>
-<pre><code>birds_df = pd.read_csv('birds_lg.csv', index_col='Species')
-...
-results_df.to_csv('birds_results.csv')
-...
-fig.savefig('birds_results.pdf') </code></pre>
-<p>to instead read</p>
-<pre><code>birds_df = pd.read_csv('../data/birds_lg.csv', index_col='Species')
-...
-results_df.to_csv('../results/birds_results.csv')
-...
-fig.savefig('../results/birds_results.pdf')</code></pre>
-<p>You should recognize this syntax from our shell lesson as providing a relative path from the <code>src</code> directory to the <code>data</code> and <code>results</code> directories (remember that the <code>..</code> syntax means “go up one level”).</p>
-<p>After making these two changes, commit the <code>runall</code> script to your git repo.</p>
+<p>Now that we have our core functions and tests in place, it’s time to implement the “button” for our push-button workflow — the <code>runall.R</code> script. We have not created this yet, so go ahead and create a new .R script.</p>
+<p>As a reminder, the idea of the <code>runall</code> script is to collect all of the “wrapper” code that’s needed to run this particular analysis into a single file. When you execute this file with the command <code>R runall.R</code>, it will fill in your previously empty results directory with the output of our analysis (in this case, a table and a plot).</p>
+<p>After creating this file, commit the <code>runall</code> script to your git repo.</p>
 </div>
 <div id="run-the-push-button-analysis" class="section level2">
 <h2>6. Run the push button analysis</h2>
-<p>Now with everything in place, we’re ready for the magic. Execute <code>python runall.py</code> from your <code>src</code> subdirectory and marvel at your results!</p>
-<p>Now, here’s the fun part. <strong>Delete the files in your results directory.</strong> (Was that scary?) And then run the <code>runall</code> script again and marvel at your fully reproducible workflow! This “delete and rerun” strategy actually comes up in real life — if you’ve been making a lot of changes to your code, and aren’t quite sure what’s in your <code>results</code> directory, you may want to periodically clear out this folder and re-run everything to make sure that everything is regenerating properly.</p>
-<p>For extra credit, delete everything in your <code>src</code> folder too. Once it’s gone, try running the command <code>git reset --hard</code> and see what happens. Can you figure out what this command means?</p>
-<p>At this point, your directory should look like the below.</p>
-<pre><code>.
-|-- data
-|   |-- birds_lg.csv
-|   |-- README.txt
-|-- man
-|-- results
-|   |-- birds_result.csv
-|   |-- birds_result.png
-|-- src
-|   |-- birds_sm.csv
-|   |-- mean_sightings.py
-|   |-- runall.py
-|   |-- test_mean_sightings.py</code></pre>
+<p>You can now imagine that you have finished a chatper of your thesis, and you are ready to submit it to Nature. But first, you would want to make sure all is well with your code and data.</p>
+<p>You would first <strong>delete all the files in your results directory.</strong> (sound scary?) But with <code>runall</code> script you can run everything again and marvel at your fully reproducible workflow! This “delete and rerun” strategy actually comes up in real life — if you’ve been making a lot of changes to your code, and aren’t quite sure what’s in your <code>results</code> directory, you may want to periodically clear out this folder and re-run everything to make sure that everything is regenerating properly.</p>
 <p>At this point, a natural question to ask is whether you need to add the contents of your <code>results</code> directory to your git repository. The answer should be obvious — you do not need to do this, since the files in your <code>results</code> directory contain no unique information on their own. Everything you need to create them is contained in the <code>data</code> and <code>src</code> directories. One exception to this, though, might be if your analysis takes a very long time to run and the outputs are fairly small in size, in which case you may want to periodically commit (so that you can easily recover) the results associated with “intermediate” versions of your code.</p>
 <p>While many of your projects will be nearly this simple, some will be more complex, sometimes significantly so. You will eventually come across the need to deal with modules that are shared across multiple projects, running the same analysis on multiple sets of parameters simultaneously, running analyses on multiple computers, etc. While we don’t have time to go into these extra bits in detail, feel free to ask the instructors about any specific issues that you expect to encounter in the near future.</p>
 <p>And that just about does it. Good luck!</p>
