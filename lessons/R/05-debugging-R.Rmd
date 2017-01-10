@@ -89,9 +89,10 @@ More insidious bugs
  - Comparing real numbers exactly using `==` is dangerous because
    numbers on a computer are only represented to limited numerical
    precision. For example,
-    ```{r}
+
+```{r}
     1/3 == 4*(4/12-3/12)
-    ```
+```
   - You want to compare an entire vector but your code just compares
    the first value (e.g., in an if statement) -- consider using
    *identical* or *all.equal*
@@ -233,7 +234,9 @@ pain to remember exactly what you changed) and hard to do this with
 functions in packages, so *trace* is a nice way to do things.
 
 ## Challenge - Debugging {.challenge}
- ```{r, eval=FALSE}
+Use browser() to find the bug in this function to plot the number of bee operations in New Zealand
+
+```{r, eval=FALSE}
  hb <- read.csv('data/beeOperations.csv')
  hb <- hb[order(hb$year),]
 

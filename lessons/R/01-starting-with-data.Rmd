@@ -120,7 +120,7 @@ can change the current working directory using the function
 created:
 
 ```{r,eval=FALSE}
-setwd("~/Desktop/software-carpentry-2016/data-files/r-lesson/")
+setwd("~/Desktop/2017-01-12-ucb/lessons/R")
 ```
 
 Just like in the Unix Shell, we type the command and then press
