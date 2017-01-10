@@ -19,7 +19,7 @@ minutes: 30
 
 
 As noted by Greg Wilson (the founder of Software Carpentry), every
-programming language shares [seven core elements][1]:
+programming language shares seven core elements:
 
 1.  Individual things (the number 2, the character 'hello')
 2.  Commands that operate on things (the + symbol, the `length`
