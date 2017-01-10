@@ -22,11 +22,11 @@ As noted by Greg Wilson (the founder of Software Carpentry), every
 programming language shares seven core elements:
 
 1.  Individual things (the number 2, the character 'hello')
-2.  Commands that operate on things (the + symbol, the `length`
+2.  Groups of things (R vectors, dataframes, and arrays)
+3.  Commands that operate on things (the + symbol, the `length`
     function)
-3.  Groups of things (R vectors, dataframes, and arrays)
-4.  Ways to repeat yourself (for and while loops)
-5.  Ways to create chunks (functions, objects/classes, and packages)
+4.  Ways to create chunks (functions, objects/classes, and packages)
+5.  Ways to repeat yourself (for and while loops)
 6.  Ways to make choices (if and try statements)
 7.  Ways to combine chunks (function composition)
 
