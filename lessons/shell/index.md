@@ -158,6 +158,7 @@ Desktop$ cd workshop
 </blockquote>
 
 **Quick Tips**
+
 * Tab completion
 * Using the arrow keys
 
