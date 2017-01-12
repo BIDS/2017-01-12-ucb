@@ -52,6 +52,7 @@ This means you're set to go, even if you don't exactly know where we're going ye
 1\. Working with directories and files
 -------------------------------------
 **Moving around your filesystem**
+
 * `pwd`
 * `ls`
 * `cd`
