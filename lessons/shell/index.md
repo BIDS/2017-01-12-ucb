@@ -11,11 +11,24 @@ Our introduction to best practices in scientific computing begins with one of th
 
 Before we get started, I'll note that some of you, especially those of you who deal routinely with large numbers of small files (i.e., sensor data saved every hour by an instrument), will benefit from learning more advanced skills than those that we'll cover here. If you're interested, check out [this more detailed shell tutorial](http://software-carpentry.org/lessons.html){:target="_blank"} from Software Carpentry.
 
+**From buttons to the command line**
+
 So, to kick off, what exactly is "the shell"? Although these days when we think of "a computer" we immediately imagine buttons, menus, folders, etc., you're probably aware that this wasn't always the case. In the days before graphical user interfaces (GUIs), all interaction with computers occurred through a process that involved sending a computer text commands and waiting for the computer to show you some text back in response. Today, this text-based manner of interacting with a computer is known as a command line interface, and using it is known as "working at the command line".
+
+**read-evaluate-print**
 
 When we're working at the command line, our interactions with the computer follow what's known as a read-evaluate-print loop, which means that we type in something, the computer reads it, does something that we've told it to do, and prints the output back to us. We do this over and over again until we're done and log off. Although we've used the word "computer" above to indicate the actor who reads and replies to our text input, the actor that we are communicating with directly is actually a specialized program called "the shell". We can tell the shell to do all sorts of things, including to work with  files on our hard drive and to run other specialized command line programs.
 
-Since this is the 2010's (can you believe it?), why should we bother learning how to use the shell? The most important reason is that much of the rest of the scientific computing pipeline depends on it. Once you make the leap of breaking out of your comfortable R or Matlab GUI and trying to practice more advanced scientific computing, you'll immediately need to interact with the shell. On an immediate basis, you'll need to be comfortable with the skills in this lesson in order to complete our subsequent lessons on scientific programming, version control, testing, and reproducible workflows. Furthermore, once you become comfortable in the shell, you'll find that there are many tasks that you can do more quickly through the shell than through your old graphical programs. 
+**Why the shell?**
+
+Since this is the 2010's (can you believe it?), why should we bother learning how to use the shell? The most important reason is that much of the rest of the scientific computing pipeline depends on it. Once you make the leap of breaking out of your comfortable R or Matlab GUI and trying to practice more advanced scientific computing, you'll immediately need to interact with the shell. On an immediate basis, you'll need to be comfortable with the skills in this lesson in order to complete our subsequent lessons on scientific programming, version control, testing, and reproducible workflows. Furthermore, once you become comfortable in the shell, you'll find that there are many tasks that you can do more quickly through the shell than through your old graphical programs.
+
+Here are some specific benefits that the shell (and command line) give you:
+
+* Automate many system-wide functions
+* Operate in computing environments where you don't have a GUI (e.g., on a cluster)
+* Use many tools that are most effective in the shell (e.g., Git)
+* Use a light-weight solution to get quick information (e.g., system usage)
 
 In this lesson we'll review how to use the shell for four common types of tasks that are a part of scientific computing.
 
@@ -32,19 +45,23 @@ To get started, let's launch a shell session. If you're on a Mac, go to your App
 Once you launch a terminal session, you'll see a window pop up with something like this printed in it.
 
     Last login: Thu Jan 16 17:50:22 on ttys001
-    ~$ 
+    ~$
 
 This means you're set to go, even if you don't exactly know where we're going yet. You may have other text in front of the `$` symbol on your computer, which is fine. You'll notice that if you start typing, your text appears following the `$` symbol. This state is known as being at a command prompt, and it's the first step in the read-execute-print loop that we mentioned earlier. In other words, the shell is now waiting for us to tell it to do something.
 
 1\. Working with directories and files
 -------------------------------------
+**Moving around your filesystem**
+* `pwd`
+* `ls`
+* `cd`
 
 Probably the most fundamental and most frequent type of task that you'll complete in the shell will involve navigating around your hard drive and working with files and directories. Head over to the shell and to your command prompt, type the command `pwd` and hit return, and watch what the shell prints out.
 
     ~$ pwd
-    /Users/jkitzes
+    /Users/choldgraf
 
-The response of your shell will be different, of course, unless your name is also Justin Kitzes. The command `pwd` is short for "print working directory" and it tells us which directory the shell is currently in. (This is the command line equivalent to opening a particular folder on your hard drive.) When you launch a shell session, you're automatically placed in a location known as your "home directory" to start off.
+The response of your shell will be different, of course, unless your name is also Chris Holdgraf. The command `pwd` is short for "print working directory" and it tells us which directory the shell is currently in. (This is the command line equivalent to opening a particular folder on your hard drive.) When you launch a shell session, you're automatically placed in a location known as your "home directory" to start off.
 
 So now we know what directory we're in, but we don't know what's in it. To see the contents of this folder, type the command `ls`, short for "listing", and hit return.
 
@@ -66,7 +83,7 @@ Hmm, that didn't seem to do anything. It turns out that running the command `cd`
 We know from running `ls` that one of the subdirectories of your home directory is "Desktop". Let's change directories into our Desktop directory.
 
     ~$ cd Desktop
-    Desktop$ 
+    Desktop$
 
 If you run the command `ls`, you should now see a list of all of the files and folders on your computer's desktop. If `ls` prints no output, then you have no files or folders currently sitting on your desktop --- congrats on being organized!
 
@@ -74,21 +91,30 @@ Quick tip --- now that we're in the Desktop directory, how to we go back "up" to
 
     Desktop$ cd ..
     ~$ pwd
-    /Users/jkitzes
+    /Users/choldgraf
     ~$ cd Desktop/
     Desktop$ pwd
-    /Users/jkitzes/Desktop
-    Desktop$ 
+    /Users/choldgraf/Desktop
+    Desktop$
 
-Before we move on to working with files, one final important vocabulary word is "path". The path refers to the location of a directory or file on your hard drive --- we would thus say that `/Users/jkitzes/Desktop` is the path to my Desktop directory. There are two ways to think of paths - absolute and relative. Absolute paths, like `/Users/jkitzes/Desktop`, give the location of a file or directory from the root of your entire file system, which is indicated by the leading `/` character (`cd /` will take you to this root). Relative paths specify the location of a file or folder relative to your present working directory (i.e., the relative path is "glued on" to your current path). If you're in your home folder `/Users/jkitzes`, the commands `cd /Users/jkitzes/Desktop` and `cd Desktop` thus take you to the same place, but the former uses an absolute path (and would work from anywhere) while the latter uses a relative path.
+**What is a "path"?**
+
+Before we move on to working with files, one final important vocabulary word is "path". The path refers to the location of a directory or file on your hard drive --- we would thus say that `/Users/choldgraf/Desktop` is the path to my Desktop directory. There are two ways to think of paths - absolute and relative. **Absolute paths**, like `/Users/choldgraf/Desktop`, give the location of a file or directory from the root of your entire file system, which is indicated by the leading `/` character (`cd /` will take you to this root). **Relative paths** specify the location of a file or folder relative to your present working directory (i.e., the relative path is "glued on" to your current path). If you're in your home folder `/Users/choldgraf`, the commands `cd /Users/choldgraf/Desktop` and `cd Desktop` thus take you to the same place, but the former uses an absolute path (and would work from anywhere) while the latter uses a relative path.
 
 Finally, remember that if you ever get lost, `pwd` will tell you where you are and `cd` with no arguments will take you back to your home folder.
+
+**Creating and moving files**
+
+* `mkdir`
+* `touch`
+* `mv`
+* `rm`
 
 Now that you're in your Desktop directory, let's create a directory to hold all of the materials for this workshop. The command `mkdir`, short for "make directory", will create a directory. It requires one argument, which is the path (absolute or relative) to the directory that you wish to create.
 
     Desktop$ mkdir workshop
     Desktop$ cd workshop
-    workshop$ 
+    workshop$
 
 We've now created and moved into a directory named `workshop` in our Desktop directory. If you look at your actual Desktop on your computer, you should see that, in fact, a new folder called `workshop` has appeared there. Remember, the shell is just giving you an alternative way of working with the same folders and files that you see when you use your "normal" graphical interface.
 
@@ -108,9 +134,9 @@ Since this file isn't doing much for us, let's delete it using `rm`, short for "
 
     workshop$ rm file1.txt
     workshop$ ls
-    workshop$ 
+    workshop$
 
-Important note --- the shell has no concept of a trash can, so once you've deleted a file using `rm`, it's gone forever. As such, use it carefully.
+**Important note** --- the shell has no concept of a trash can, so once you've deleted a file using `rm`, it's gone forever. As such, use it carefully.
 
 Removing an empty directory is just as easy as removing a file, but removing a full directory requires us to add one extra argument to the `rm` command (more on this concept later) --- `rm -r directory-name` will delete a directory called `directory-name` and all of its contents.
 
@@ -130,25 +156,45 @@ Desktop$ cd workshop
 </code></pre></div>
 </blockquote>
 
-As you perform the above steps, there are two very useful productivity shortcuts for working in the shell that you should try out. The first is called tab completion. After you create the `workshop` directory, for example, try typing `cd wo` and then hitting tab --- you'll see that the shell fills in the rest of the directory or file name for you (if there are multiple options that start with those letters, your shell will either show you all of the options or do nothing --- in either case, you'll need to enter more letters and press tab again). The second is the use of the up arrow, which will scroll through all of your previous shell commands --- once you find one that you like, you can hit return to execute it again.
+**Quick Tips**
+* Tab completion
+* Using the arrow keys
 
-A final tip on naming files and directories. Although modern shells try hard to accommodate special characters like spaces in file and directory names, these will sometimes (even often) cause trouble for your command line work. It's highly recommended that you use only regular letters, numbers, and dash and underscore symbols in your file names to prevent any trouble later on.
+As you perform the above steps, there are two very useful productivity shortcuts for working in the shell that you should try out. The first is called **tab completion**. After you create the `workshop` directory, for example, try typing `cd wo` and then hitting tab --- you'll see that the shell fills in the rest of the directory or file name for you (if there are multiple options that start with those letters, your shell will either show you all of the options or do nothing --- in either case, you'll need to enter more letters and press tab again). The second is the use of the **up arrow**, which will scroll through all of your previous shell commands --- once you find one that you like, you can hit return to execute it again.
+
+A final tip on naming files and directories. Although modern shells try hard to accommodate special characters like spaces in file and directory names, these will sometimes (even often) cause trouble for your command line work. It's highly recommended that you use **only regular letters, numbers, and dash and underscore symbols** in your file names to prevent any trouble later on.
 
 2\. Running command line programs
 --------------------------------
 
 Now that we've discussed using the shell to navigate our file system, we'll move on to discussing the idea of executing command line programs from the shell. In the same way that you have graphical applications on your computer that you can run with a double click, your computer comes bundled with many command line programs that you can run by typing their names into the shell. Some of these will simply take an input and spit out an output, while some of them will drop you into an entirely new environment specific to that program. We'll examine both of these in turn.
 
-The first kind of command line program are those that print their results right to the terminal in front of you. In face, we've sneakily already seen several of these --- it turns out that the various commands that we used in the last section are actually programs that are executed by the shell. If you want to see where these programs are saved on your hard drive (sort of like the command line equivalent of the Applications or Programs folder that you're used to), use the command (excuse me, the program) `which`.
+**Where does a program live?**
+
+* `which`
+
+The first kind of command line program are those that print their results right to the terminal in front of you. In fact, we've sneakily already seen several of these --- it turns out that the various commands that we used in the last section are actually programs that are executed by the shell. If you want to see where these programs are saved on your hard drive (sort of like the command line equivalent of the Applications or Programs folder that you're used to), use the command (excuse me, the program) `which`.
 
     ~$ which ls
     /bin/ls
 
-This tells you that the program `ls` actual resides in a directory called `bin` that is found in the root directory of your file system. You've probably never gone there, and in fact most graphical operating systems will try to hide folders like this from you so that you don't do something dangerous. You can easily `cd` into those folders and list their contents from the shell, if you're curious, and with enough work you can also view them from your normal graphical operating system (on a Mac, for example, go to Finder, the Go menu, and Go To Folder, then type in the path `/bin`).
+This tells you that the program `ls` actually resides in a directory called `bin` that is found in the root directory of your file system. You've probably never gone there, and in fact most graphical operating systems will try to hide folders like this from you so that you don't do something dangerous. You can easily `cd` into those folders and list their contents from the shell, if you're curious, and with enough work you can also view them from your normal graphical operating system (on a Mac, for example, go to Finder, the Go menu, and Go To Folder, then type in the path `/bin`).
+
+**Passing arguments to a program**
 
 As we saw earlier, command line programs take two additional types of input, known as arguments and options (or flags). Arguments are the words that you type after the program name (`touch file.txt`, `cd Desktop`) and usually tell the program what file or directory it should perform its operations on. Options always start with a dash or two dashes and are used to modify how the program operates. For example, try running the `ls` command with the option `-l`. Sometimes options can themselves have arguments, so that you have the program name, the arguments, the options, and the arguments to the options.
 
+**Getting help in the shell**
+
+* `man`
+* `--help`
+
 How do you know what arguments and options are available for each program? In most shells, you can type the command `man` followed by the name of the program, and you will be shown the help file for that command, which will list all of the available arguments and options (in Git Bash on Windows, try the name of the program followed by `--help`, as in `ls --help`). Use the arrow keys to scroll up and down, and type `q` to quit when you're done.
+
+**Launching another environment**
+
+* `nano`
+* `R`
 
 Aside from programs like `ls` that print their output right to the command line (in technical terms, they print to "standard output"), there are also programs that launch entire environments for themselves. One of those is the command line text editor `nano`. First, make sure that you're in your `workshop` directory, then execute the command `nano`.
 
@@ -158,7 +204,7 @@ When you do this, your shell session will appear to vanish (don't worry, it's st
     Wood Duck,5
     Gadwall,3
 
-When you're done, as helpfully suggested by the lines at the bottom of your window, hit Ctrl-x to exit (the `^` symbol is shorthand for the Control key). It will ask you if you want to save the file --- type Y for yes. Name the file `ducks.csv` and hit return. You'll now be back in your shell session --- run `ls` and you'll see that you've created a new csv file in this directory. 
+When you're done, as helpfully suggested by the lines at the bottom of your window, hit Ctrl-x to exit (the `^` symbol is shorthand for the Control key). It will ask you if you want to save the file --- type Y for yes. Name the file `ducks.csv` and hit return. You'll now be back in your shell session --- run `ls` and you'll see that you've created a new csv file in this directory.
 
 You may recognize the file extension `csv` as standing for "comma separated values", and you've probably opened `csv` files before in a spreadsheet program such as Excel. As suggested by the above, `csv` files are actually nothing more than plain text files in which the "columns" of data are separated by commas. As plain text files, command line programs (including version control software) can do a lot of useful things with `csv` files, making them a good alternative to Excel file formats for saving and working with tabular data.
 
@@ -189,22 +235,27 @@ workshop$ less owls.csv
 </code></pre></div>
 </blockquote>
 
-A very important command line program that we'll be working with later is `python`, which (as you guessed) will read and execute python code. There are two ways that we'll use the `python` program at the command line. First, if you just type `python` with no arguments, you'll be dropped into what's called the "python interpreter", which is an interactive environment in which you can enter Python commands and see output.
+A very important command line program that we'll be working with later is `R`, which (as you guessed) will read and execute R code. There are two ways that we'll use the `R` program at the command line. First, if you just type `R` with no arguments, you'll be dropped into what's called the "R interpreter", which is an interactive environment in which you can enter R commands and see output.
 
-    workshop$ python
-    Python 3.4.3 |Continuum Analytics, Inc.| (default, Oct 20 2015, 14:27:51)
-    [GCC 4.2.1 (Apple Inc. build 5577)] on darwin
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> 
+    workshop$ R
+    R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
+    Copyright (C) 2016 The R Foundation for Statistical Computing
+    Platform: x86_64-apple-darwin13.4.0 (64-bit)
+    ...
+    >
 
-Although your shell session has seemingly not vanished in the same way as it did when you opened `nano`, you'll notice that your command prompt at the bottom of the screen now starts with `>>>` symbols instead of `$`. This helpfully indicates to you that you're actually inside of the python interpreter, not the shell, at this point, and that whatever you type will be executed by the Python interpreter program. Try typing `ls` and hitting return, for example, and notice that Python has no idea what you're talking about. Type `2+2` and hit return, though, and you'll see that Python knows what to do with that. To quit, type `quit()` and press return, and you'll see that the `$` prompt indicates that you're now back in the shell.
+Although your shell session has seemingly not vanished in the same way as it did when you opened `nano`, you'll notice that your command prompt at the bottom of the screen now starts with `>` symbols instead of `$`. This helpfully indicates to you that you're actually inside of the R interpreter, not the shell, at this point, and that whatever you type will be executed by the R interpreter program. Try typing `ls` and hitting return, for example, and notice that R has a very different kind of output. Type `2+2` and hit return, though, and you'll see that R knows what to do with that. To quit, type `quit()` and press return, and you'll see that the `$` prompt indicates that you're now back in the shell.
 
-If you're an R or Matlab user, you'll notice that this looks a lot like what you see when you open the graphical programs for R and Matlab. In fact, if you have R installed on your computer, type the command `r` and hit return and you'll see essentially the same type of interpreter that we just saw when we ran `python`, only now you're in an R interpreter at the command line.
+If you're a python or Matlab user, you'll notice that this looks a lot like what you see when you open the graphical programs for python and Matlab. In fact, if you have python installed on your computer, type the command `python` and hit return and you'll see essentially the same type of interpreter that we just saw when we ran `python`, only now you're in a python interpreter at the command line.
 
-A second way to use the Python program from the command line is to give `python` an argument that's the path to a file containing Python code --- in this case, `python` will execute the code in that file, printing any output to the command line. We'll make use of that approach in later lessons.
+A second way to use the R program from the command line is to give `R` an argument that's the path to a file containing R code --- in this case, `R` will execute the code in that file, printing any output to the command line. We'll make use of that approach in later lessons.
 
 3\. Chaining commands
 --------------------
+
+* `>`
+* `>>`
+* `|`
 
 You may have noticed (or inferred) that there are a whole lot of command line programs available to us, and that each of them performs a fairly narrow, specific task. This is one of the basic philosophies of the Unix operating system (and its derivatives like Mac OS X and Linux), where most of these command line programs originated). The idea is to have lots of small pieces, each of which do their job very well, that can be combined to create larger "pipelines" that perform more complex analyses. This is a perspective that will also be at the heart of our later discussions of structuring scientific programs. In this section, we'll look at two basic techniques for combining programs and working with their output, known as redirects and pipes.
 
@@ -218,13 +269,13 @@ The first of these techniques, a redirect, is most commonly used to "redirect" t
     Barn Owl,3
     Short-eared Owl,7
 
-Let's say that we want to create a combined csv file `birds.csv` that contains both the duck and the owl data. To do this, we can save the output of our `cat` command above to a file by using the `>` character, as shown 
+Let's say that we want to create a combined csv file `birds.csv` that contains both the duck and the owl data. To do this, we can save the output of our `cat` command above to a file by using the `>` character, as shown
 below.
 
     workshop$ cat ducks.csv owls.csv > birds.csv
     workshop$ ls
     birds.csv	ducks.csv	owls.csv
-    workshop$ cat birds.csv 
+    workshop$ cat birds.csv
     Mallard,1
     Wood Duck,5
     Gadwall,3
@@ -233,6 +284,8 @@ below.
     Short-eared Owl,7
 
 While the redirect symbol `>` will create a new file, overwriting an old one if it exists, using `>>` will instead append the output to a file if it already exists.
+
+**Chaining commands with pipe**
 
 A second technique, a pipe, is used to turn the output of one program into the input for another program. Let's say that we not only wanted to combine the duck and owl data, but we also wanted to sort the resulting combined table by bird name. For sorting, we can use the command `sort`, which prints the sorted contents of a file to the terminal.
 
@@ -244,15 +297,15 @@ A second technique, a pipe, is used to turn the output of one program into the i
     Short-eared Owl,7
     Wood Duck,5
     workshop$ sort birds.csv > sorted_birds.csv
-   
-Note how the output of `sort birds.csv` compares to the output of `cat birds.csv`. The second command here saves our sorted list to a new `csv` 
+
+Note how the output of `sort birds.csv` compares to the output of `cat birds.csv`. The second command here saves our sorted list to a new `csv`
 file.
 
 Conceptually, we can see that what we've done is use `cat` to combine our two files, then take the result of that combination and give it to the `sort` command, then take the output of sort and save it to a file. The first two of these steps involves taking the output of one command and giving it to another, which here we've done by saving the intermediate file `birds.csv`. We can skip that step by using a pipe.
 
     workshop$ rm birds.csv sorted_birds.csv
     workshop$ cat ducks.csv owls.csv | sort > sorted_birds.csv
-    workshop$ cat sorted_birds.csv 
+    workshop$ cat sorted_birds.csv
     Barn Owl,3
     Gadwall,3
     Great Horned Owl,4
@@ -277,6 +330,8 @@ workshop$ cat n_records.txt
 
 4\. Finding things
 -----------------
+
+* `grep`
 
 We'll close our quick tour of the shell by discussing how to use a well-known command line program, `grep`to find lines within files that match a pattern. Although `grep` is only one of many searching tools that you might use, it is very widely known, relatively simple to learn, and will give us the opportunity to briefly examine the topic of "regular expressions".
 
