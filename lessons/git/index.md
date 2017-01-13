@@ -103,7 +103,7 @@ To get started, it's often a good idea to check in on git to see what it thinks 
     # Untracked files:
     #   (use "git add <file>..." to include in what will be committed)
     #
-    #	script.py
+    #	script.R
     nothing added to commit but untracked files present (use "git add" to track)
 
 This information returned by this command tells us what git is thinking at the moment. In this case, git is telling us that we have an untracked file called `script.R` and that nothing is currently present in our commit (this is another way of saying that nothing is in our staging area). We'll talk about the meaning of "branch master" later on.
@@ -146,7 +146,7 @@ Now you'll magically be dropped back into your terminal window, and you'll see t
     $ git commit
     [master (root-commit) beda5b7] Initial commit of script to analyze bird	data
      1 file changed, 5 insertions(+)
-     create mode 100644 script.py
+     create mode 100644 script.R
 
 The key information here is that we've successfully changed 1 file (`script.R`) by making 5 insertions (that's one for each new line of text in the file). You'll learn about the other information here as we go along.
 
@@ -187,7 +187,7 @@ Rather than constantly using "Save As" on our files or relying on a backup syste
 
 <p><a href="#" onclick="var e = document.getElementById('answer2'); if(e.style.display == 'block') e.style.display = 'none'; else e.style.display = 'block'; return false;">Click to show/hide answer</a></p>
 
-<div style="display: none;" id="answer2"><p>After making both of these changes, your <code>script.py</code> file should look like 
+<div style="display: none;" id="answer2"><p>After making both of these changes, your <code>script.R</code> file should look like 
 this:</p>
 
 <pre><code># Analyze bird counts
@@ -234,7 +234,7 @@ You'll note that new version of our command this gives a simple list of our thre
 
 Before your most recent commit, you'll see two additional words in parentheses, HEAD and master. These labels provide a useful way of navigating around your history and of knowing where you are in your history at any time. HEAD is particularly important --- git uses the special label `HEAD` to refer to the location of your workspace with regard to your git history. In other words, if `HEAD` points to the commit labeled 89f5445, as it does here, it means that when you actually open the `birdsurvey` directory on your computers, you'll be looking at all of your files as they were at commit 89f5445. As we'll see in a moment, we can move HEAD around so that we see different versions of our files in our `birdsurvey` directory, or our workspace. The word master refers to a branch called master, which once again we'll discuss later.
 
-As we've discussed, each of these commits is storing the exact state of our file `script.py`, as present in the staging area, at the moment of the commit. In that sense, git is retaining an exact history of our file for us over time. (If we had more than one file, it would be storing the exact state of our entire workspace folder at each commit.)
+As we've discussed, each of these commits is storing the exact state of our file `script.R`, as present in the staging area, at the moment of the commit. In that sense, git is retaining an exact history of our file for us over time. (If we had more than one file, it would be storing the exact state of our entire workspace folder at each commit.)
 
 Before we move on, it turns out that the above version of `git log` is going to be very useful, so let's quickly create an alias for it.
 
@@ -269,7 +269,7 @@ There are a lot of details here. The most important line though is the last one,
     * 97e3498 Add code to make table
     * beda5b7 (HEAD) Initial commit of script to analyze bird data
 
-This tells us that our workspace, that is our actual `birdsurvey` folder on our computer, now is showing us our files exactly as they were at the moment of this initial commit. Hop over to your `birdsurvey` folder and open the file `script.py`. Miraculously, it has reverted back to it's state as of your original commit!
+This tells us that our workspace, that is our actual `birdsurvey` folder on our computer, now is showing us our files exactly as they were at the moment of this initial commit. Hop over to your `birdsurvey` folder and open the file `script.R`. Miraculously, it has reverted back to it's state as of your original commit!
 
 It can be a little disconcerting to see your files update like this "in place" --- it may give you the feeling that you're losing or overwriting information. Rest assured that git has a history of all of your file versions that you've ever committed and that you can get back to any spot at any time.
 
@@ -404,7 +404,7 @@ Next, let's imagine that while we're waiting for the presentation to happen, we 
 <blockquote>
 <h3>Exercise 4</h3>
 
-<p>Switch back to the master branch by running <code>git checkout master</code>. Run <code>git lg</code> and review your <code>birdsurvey</code> directory to make sure you understand where you are now. Is the edit to make the figure line red present here? Open <code>script.py</code> and change the line "Save table" to "Save table with bold header". Commit this change. Run <code>git lg</code> and examine the output. Does it remind you of a tree trunk with a branch?</p>
+<p>Switch back to the master branch by running <code>git checkout master</code>. Run <code>git lg</code> and review your <code>birdsurvey</code> directory to make sure you understand where you are now. Is the edit to make the figure line red present here? Open <code>script.R</code> and change the line "Save table" to "Save table with bold header". Commit this change. Run <code>git lg</code> and examine the output. Does it remind you of a tree trunk with a branch?</p>
 
 <p><a href="#" onclick="var e = document.getElementById('answer4'); if(e.style.display == 'block') e.style.display = 'none'; else e.style.display = 'block'; return false;">Click to show/hide answer</a></p>
 
@@ -438,7 +438,7 @@ Let's say that we like the new red line in our figure that we made for the prese
     $ git merge presentation
     Auto-merging script.R
     Merge made by the 'recursive' strategy.
-     script.py | 2 +-
+     script.R | 2 +-
      1 file changed, 1 insertion(+), 1 deletion(-)
 
 The first `git checkout` command is just to make extra sure that we're on the master branch --- the branch that you're on when you run `git merge` is the one that the changes will come _into_. The second command actually performs the merge, and we can see that it succeeds with no problems. Running `git lg` to see our current status shows us the following.
@@ -453,7 +453,7 @@ The first `git checkout` command is just to make extra sure that we're on the ma
     * 97e3498 Add code to save table
     * beda5b7 Initial commit of script to analyze bird data
 
-We can see that the presentation branch is still right where we left it, but now master has, as antecedents, both the "Make header bold" commit from earlier and merged in the "Make line red" commit from the presentation branch. That means that our current workspace, at the tip of master, will reflect the changes associated with both of these commits, even though they were originally on two separate branches. If you open `script.py`, you'll see that both of these changes are now in our workspace, which is showing us the new tip of our master branch.
+We can see that the presentation branch is still right where we left it, but now master has, as antecedents, both the "Make header bold" commit from earlier and merged in the "Make line red" commit from the presentation branch. That means that our current workspace, at the tip of master, will reflect the changes associated with both of these commits, even though they were originally on two separate branches. If you open `script.R`, you'll see that both of these changes are now in our workspace, which is showing us the new tip of our master branch.
 
 ### Merging with conflicts
 
@@ -471,8 +471,8 @@ Let's now create a conflict. Imagine that while you were working alternately on 
 Now, let's once again try to merge the presentation branch into the master branch. Running `git merge` now gives us a little trouble.
 
     $ git merge presentation
-    Auto-merging script.py
-    CONFLICT (content): Merge conflict in script.py
+    Auto-merging script.R
+    CONFLICT (content): Merge conflict in script.R
     Automatic merge failed; fix conflicts and then commit the result.
 
 Uh oh, now what's going on? We're actually currently paused in the middle of our merge, and git is waiting for us to resolve the merge conflict.
@@ -495,7 +495,7 @@ If we run `git status` now to see what git is thinking, we'll see some new outpu
 
 This tells us that we have one file, `script.R` that is "unmerged" (i.e., we have to complete the merge ourselves).
 
-To complete the merge, we start by opening the `script.py` file currently in our workspace to see what it looks like. When you do that, you'll see these funny lines in the middle of the file.
+To complete the merge, we start by opening the `script.R` file currently in our workspace to see what it looks like. When you do that, you'll see these funny lines in the middle of the file.
 
     <<<<<<< HEAD
     Save small figure, thick line
