@@ -9,7 +9,7 @@ Version Control with Git
 
 If you're like most scientists, you spend a fair amount of your "computer time" just trying to organize and keep track track of all of the files associated with your research projects. Among the many logistical headaches that you likely deal with on a daily basis are:
 
-1.  Updating files, like scripts or papers, without losing copies of your old version (Myfile\_2015\_01\_v2\_Sent\_Final\_FINAL\_Submitted.doc)
+1.  Updating files, like scripts or papers, without losing copies of your old version ([Myfile\_2015\_01\_v2\_Sent\_Final\_FINAL\_Submitted.doc](http://www.phdcomics.com/comics/archive.php?comicid=1531))
 
 2.  Figuring out what changed between two versions of a file (did my poster last year report results from the old or the new regression model?)
 
@@ -27,7 +27,7 @@ In this lesson, we're going to look at a tool known as a version control system 
 
 The practice of using version control will pay dividends immediately from an organizational perspective, even if your projects are relatively small and you work on them alone. However, version control really starts to show its importance as the size of your projects grow. When you write a program that will be maintained on an ongoing basis (rather than just a one-off script for a single project) and when you try to start collaborating with other computational scientists, version control becomes essential. Knowing how to work with version control systems will also be necessary if you ever want to contribute to open source scientific software packages developed by others.
 
-Before we get started, we'll make sure you have all of the software and accounts that you'll need for this lesson and then discuss some basic background and terminology. We'll then proceed through each of the seven "headaches" above and see how we can make these less painful through judicious use of git.
+Before we get started, we'll make sure you have all of the software and accounts that you'll need for this lesson and then discuss some basic background and terminology. We'll then proceed through each of the seven "headaches" above and see how we can make these less painful through judicious use of git. [Hopefully](https://xkcd.com/1597/).
 
 The lessons below are really just an entry point into the world of git. For more information, and more detailed explanations of all that follows, have a look at the excellent free book [Pro Git](http://git-scm.com/book).
 
