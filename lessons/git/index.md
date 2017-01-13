@@ -74,7 +74,7 @@ To start off, our script file will contain the following text.
     Run analysis
 
 >### Exercise 1
->Using the terminal, navigate to a convenient location on your computer and make a directory called `birdsurvey`. Inside this folder, create a text file called `script.py` that contains the text above.
+>Using the terminal, navigate to a convenient location on your computer and make a directory called `birdsurvey`. Inside this folder, create a text file called `script.R` that contains the text above.
 
 Now, we'll set up a git repository for this folder by running the following command within that directory. Again, make sure that you're in the `birdsurvey` directory before running this command.
 
@@ -106,11 +106,11 @@ To get started, it's often a good idea to check in on git to see what it thinks 
     #	script.py
     nothing added to commit but untracked files present (use "git add" to track)
 
-This information returned by this command tells us what git is thinking at the moment. In this case, git is telling us that we have an untracked file called `script.py` and that nothing is currently present in our commit (this is another way of saying that nothing is in our staging area). We'll talk about the meaning of "branch master" later on.
+This information returned by this command tells us what git is thinking at the moment. In this case, git is telling us that we have an untracked file called `script.R` and that nothing is currently present in our commit (this is another way of saying that nothing is in our staging area). We'll talk about the meaning of "branch master" later on.
 
-To add the file `script.py` to the staging area, we run the command
+To add the file `script.R` to the staging area, we run the command
 
-    $ git add script.py
+    $ git add script.R
 
 This command doesn't seem to do anything, but if we run `git status` again, we'll see its effect.
 	 
@@ -122,10 +122,10 @@ This command doesn't seem to do anything, but if we run `git status` again, we'l
     # Changes to be committed:
     #   (use "git rm --cached <file>..." to unstage)
     #
-    #	new file:   script.py
+    #	new file:   script.R
     #
 
-Now we have the new file `script.py` in our staging area. If we wanted to, we could add other files, or make other changes, and add them all to the staging area as well. Remember, the staging area is a way of collecting any number of changes that you'd like to commit to the repository all at once.
+Now we have the new file `script.R` in our staging area. If we wanted to, we could add other files, or make other changes, and add them all to the staging area as well. Remember, the staging area is a way of collecting any number of changes that you'd like to commit to the repository all at once.
 
 A logical question at this point is why git bothers to have a staging area at all --- why don't you just commit everything that's changed all at once to the repository? This boils down to a question of workflow. It is often the case that you'll make a bunch of changes to a bunch of files (possibly screwing up all sorts of things), but you don't necessarily want to add all of these permanently to the repository all at once. You may want to add them a few at a time, so as to better keep track of their history. Or you may not want to add some of them at all. The staging area basically helps you organize all of the changes that you've made into commits that you add to your repo, one by one, in some logical fashion that will be useful to you later on.
 
@@ -148,9 +148,9 @@ Now you'll magically be dropped back into your terminal window, and you'll see t
      1 file changed, 5 insertions(+)
      create mode 100644 script.py
 
-The key information here is that we've successfully changed 1 file (`script.py`) by making 5 insertions (that's one for each new line of text in the file). You'll learn about the other information here as we go along.
+The key information here is that we've successfully changed 1 file (`script.R`) by making 5 insertions (that's one for each new line of text in the file). You'll learn about the other information here as we go along.
 
-So, what was the point of all that? The upshot is that the exact state of the file `script.py` that was in the staging area at the moment of our commit is now permanently stored and tracked in our version control system. No matter what changes we make to this file in the future, we can always easily come back to this version at any time, as we'll see later. We can also easily compare this version to other future versions.
+So, what was the point of all that? The upshot is that the exact state of the file `script.R` that was in the staging area at the moment of our commit is now permanently stored and tracked in our version control system. No matter what changes we make to this file in the future, we can always easily come back to this version at any time, as we'll see later. We can also easily compare this version to other future versions.
 
 To see a record of our previous commits, we can run the command `git log`, which will show us a history of our commits (so far, just this one initial commit).
 
@@ -169,7 +169,7 @@ As before, we can check `git status` to see what git thinks is going on (typing 
 
 Once again, we'll talk about the meaning of "branch master" later on. The second line, though, tells us that our working directory is "clean" (i.e., it matches the repository exactly), and as such there's nothing available to commit. In other words, we haven't changed anything since our last commit.
 
-Having made our initial commit to track `script.py`, we can now get on with our actual research work of writing more code to perform more analysis. As we do so, our workflow will now include periodically committing our changes to the git repository so that we save a historical record of everything that we've done.
+Having made our initial commit to track `script.R`, we can now get on with our actual research work of writing more code to perform more analysis. As we do so, our workflow will now include periodically committing our changes to the git repository so that we save a historical record of everything that we've done.
 
 Now that you've got the basics down, we'll turn to our seven "headaches" and see how git can help us alleviate each of these.
 
@@ -307,13 +307,13 @@ In the previous section, we saw how we could roll back our entire project to a p
 
 ### Comparing files 1
 
-If the file that you want to compare is simply a plain text file, like our `script.py`, then we can use an easy command called `git diff`.
+If the file that you want to compare is simply a plain text file, like our `script.R`, then we can use an easy command called `git diff`.
 
-    $ git diff beda5b7:script.py 89f5445:script.py
-    diff --git a/script.py b/script.py
+    $ git diff beda5b7:script.R 89f5445:script.R
+    diff --git a/script.R b/script.R
     index b60af41..b4c75da 100644
-    --- a/script.py
-    +++ b/script.py
+    --- a/script.R
+    +++ b/script.R
     @@ -3,3 +3,8 @@
      Read data file
 
@@ -323,7 +323,7 @@ If the file that you want to compare is simply a plain text file, like our `scri
     +
     +Save small figure
 
-In the above command, we entered the hash for the earlier commit (here, our initial commit) followed by the hash for the later commit (here, our most recent commit). The command `git diff` actually calls an external command line program called `diff` and runs it on the versions of `script.py` found in those two commits. After a few cryptic lines (that you might be able to interpret if you stare hard), you'll see that this command prints out the file `script.py` with some `+` signs to show the lines that were added between these two commits. If lines were deleted, you'd see `-` signs, and if lines were changed you'd see something a bit more complicated that indicated the in-place change.
+In the above command, we entered the hash for the earlier commit (here, our initial commit) followed by the hash for the later commit (here, our most recent commit). The command `git diff` actually calls an external command line program called `diff` and runs it on the versions of `script.R` found in those two commits. After a few cryptic lines (that you might be able to interpret if you stare hard), you'll see that this command prints out the file `script.R` with some `+` signs to show the lines that were added between these two commits. If lines were deleted, you'd see `-` signs, and if lines were changed you'd see something a bit more complicated that indicated the in-place change.
 
 Two quick tips. First, you'll want to be sure to enter the earlier commit first to get the order of changes correct. Second, if you leave off the `:` and file names from the `git diff` command, you'll see the differences between all files that changed between two commits.
 
@@ -335,9 +335,9 @@ There are two important cases in which a diff tool is not going to be very helpf
 
 In both of these cases, you need to go back in time, grab a copy of a specific file from an earlier commit, and bring it into your present workspace so that you can actually open the current version and the older version at the same time. You can do this fairly easily with a command called `git show`.
 
-    $ git show beda5b7:script.py > old_script.py
+    $ git show beda5b7:script.R > old_script.R
 
-Now, if you look into your folder, you'll see a new file called `old_script.py`. If you open this, you'll see that it gives you the version of the `script.py` file that you had at the commit beda5b7. You can use the syntax above to get back a copy of any file from any commit. Recall that the `>` symbol is a redirect, a shell command that takes the output of the git command and saves it in the file with the name following this symbol.
+Now, if you look into your folder, you'll see a new file called `old_script.R`. If you open this, you'll see that it gives you the version of the `script.R` file that you had at the commit beda5b7. You can use the syntax above to get back a copy of any file from any commit. Recall that the `>` symbol is a redirect, a shell command that takes the output of the git command and saves it in the file with the name following this symbol.
 
 Keep in mind that using `git show` generates temporary files that are copies of old versions. You'll want to delete these after you're done looking at them, or else your repo will just end up with a whole bunch of copies of different versions of your files all mushed together, which is exactly the confusion that we're trying to avoid by using version control in the first place.
 
@@ -350,7 +350,7 @@ So far, the techniques that we've looked at provide a unified way of replacing t
 
 To get started, we'll introduce the concept of a branch. Branches work sort of like they sound --- imagine a tree with a big trunk growing upward, with a branch coming out to one side. Both the trunk and the branch are growing from the tips (from the apical meristem, for you biologists), so the newest wood is always at the tip of the branch and the tip of the trunk.
 
-Now, apply this analogy to the development of a file. Let's say we're working on `script.py` for some time, and at some point we need to create a version of our analysis that's going to generate output specifically for a seminar presentation. While we work on adjusting our script for the presentation, we also may want to keep working on the main version of our file, which runs the analysis for our dissertation. To do this, we'll create a separate branch for the "presentation version" of our script and allow it to grow, on its own, independently of the trunk. At any time, we can switch back and forth between the tip of the branch and the tip of the trunk, depending on whether we want to "add new wood" to the presentation or the dissertation branch.
+Now, apply this analogy to the development of a file. Let's say we're working on `script.R` for some time, and at some point we need to create a version of our analysis that's going to generate output specifically for a seminar presentation. While we work on adjusting our script for the presentation, we also may want to keep working on the main version of our file, which runs the analysis for our dissertation. To do this, we'll create a separate branch for the "presentation version" of our script and allow it to grow, on its own, independently of the trunk. At any time, we can switch back and forth between the tip of the branch and the tip of the trunk, depending on whether we want to "add new wood" to the presentation or the dissertation branch.
 
 Let's walk through this process, which should make the above example more clear. First, we can run our `git lg` command again to see where we are.
 
@@ -436,7 +436,7 @@ Let's say that we like the new red line in our figure that we made for the prese
     $ git checkout master
     Already on 'master'
     $ git merge presentation
-    Auto-merging script.py
+    Auto-merging script.R
     Merge made by the 'recursive' strategy.
      script.py | 2 +-
      1 file changed, 1 insertion(+), 1 deletion(-)
@@ -489,11 +489,11 @@ If we run `git status` now to see what git is thinking, we'll see some new outpu
     # Unmerged paths:
     #   (use "git add <file>..." to mark resolution)
     #
-    #	both modified:      script.py
+    #	both modified:      script.R
     #
     no changes added to commit (use "git add" and/or "git commit -a")
 
-This tells us that we have one file, `script.py` that is "unmerged" (i.e., we have to complete the merge ourselves).
+This tells us that we have one file, `script.R` that is "unmerged" (i.e., we have to complete the merge ourselves).
 
 To complete the merge, we start by opening the `script.py` file currently in our workspace to see what it looks like. When you do that, you'll see these funny lines in the middle of the file.
 
@@ -513,7 +513,7 @@ in its place.
 
 Now we can add this fix to our staging area using `git add` and then run `git status` to see what's going on.
 
-    $ git add script.py
+    $ git add script.R
     $ git status
     # On branch master
     # All conflicts fixed but you are still merging.
@@ -521,7 +521,7 @@ Now we can add this fix to our staging area using `git add` and then run `git st
     #
     # Changes to be committed:
     #
-    #	modified:   script.py
+    #	modified:   script.R
     #
 
 Git helpfully tells us that we've fixed all of our conflicts, but that we're still in the middle of our merge, and that we need to run `git commit` to complete the merge. Go ahead and do so, and run `git lg` once again to make sure that you've got the history that you would expect.
@@ -587,10 +587,10 @@ Finally, we're ready to send our project and it's history to GitHub. To do this,
 
 You may need to enter your GitHub password after running this command, which you should do. Hopefully you will see something similar to the above, which indicates that everything completed successfully. The output here tells us that our data was compressed, written to our remote repository, and that git has set up our local master branch to track the remote repository branch also called master. This essentially means that when we later "download" our data using `git pull`, git will know where to put it.
 
-Now, head back over to your web browser and reload the page that you were just on (or head over to http://github.com/my-username/birdsurvey), and you'll see that your `script.py` file is available for all the world to see. You've just published your first scientific software package!
+Now, head back over to your web browser and reload the page that you were just on (or head over to http://github.com/my-username/birdsurvey), and you'll see that your `script.R` file is available for all the world to see. You've just published your first scientific software package!
 
 >### Exercise 7
->Take a few minutes to poke around the GitHub page for your project. In particular, try clicking on the link for the file `script.py` and the link in the header that says "7 commits".  Ask your instructors any questions as they come up.
+>Take a few minutes to poke around the GitHub page for your project. In particular, try clicking on the link for the file `script.R` and the link in the header that says "7 commits".  Ask your instructors any questions as they come up.
 >
 >If you'd like to make sure that you've got this workflow down, create a README file in your local `birdsurvey` directory, commit it to your local repo, then push it to your remote repo.
 
