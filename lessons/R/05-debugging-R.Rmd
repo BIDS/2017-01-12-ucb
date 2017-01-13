@@ -322,7 +322,7 @@ mysqrt <- function(x) {
 		x <- unlist(x)
 	}
 	if (!is.numeric(x)) {
-		stop("What is the square root of 'bob'?")
+		stop(paste("What is the square root of", x, "?"))
         ## alternatively: stopifnot(is.numeric(x))
 	} else {
 		if (any(x < 0)) {
